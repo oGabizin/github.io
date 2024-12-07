@@ -1,3 +1,4 @@
+<!-- Menu Page for Bryan's Café -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,77 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
     <link rel="stylesheet" href="styles.css">
-    <script>
-        async function loadMenu() {
-            const response = await fetch('menu.xml');
-            const xml = await response.text();
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(xml, 'application/xml');
-
-            const meals = xmlDoc.querySelectorAll('meal');
-            const hotBeverages = xmlDoc.querySelectorAll('hotBeverages > beverage');
-            const otherBeverages = xmlDoc.querySelectorAll('otherBeverages > beverage');
-
-            let mealHTML = '';
-            meals.forEach(meal => {
-                mealHTML += `
-                    <tr>
-                        <td>${meal.querySelector('name').textContent}</td>
-                        <td>$${meal.querySelector('price').textContent}</td>
-                        <td>${meal.querySelector('description').textContent}</td>
-                    </tr>
-                `;
-            });
-
-            let hotBeveragesHTML = '';
-            hotBeverages.forEach(beverage => {
-                hotBeveragesHTML += `
-                    <tr>
-                        <td>${beverage.querySelector('size').textContent}</td>
-                        <td>$${beverage.querySelector('price').textContent}</td>
-                        <td>${beverage.querySelector('description').textContent}</td>
-                    </tr>
-                `;
-            });
-
-            let otherBeveragesHTML = '';
-            otherBeverages.forEach(beverage => {
-                otherBeveragesHTML += `
-                    <tr>
-                        <td>${beverage.querySelector('name').textContent}</td>
-                        <td>$${beverage.querySelector('price').textContent}</td>
-                    </tr>
-                `;
-            });
-
-            document.getElementById('meal-table').innerHTML = mealHTML;
-            document.getElementById('hot-beverage-table').innerHTML = hotBeveragesHTML;
-            document.getElementById('other-beverage-table').innerHTML = otherBeveragesHTML;
-        }
-
-        document.addEventListener('DOMContentLoaded', loadMenu);
-    </script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <!-- Navigation -->
     <header>
-        <div class="logo">
-            <img src="logo.png" alt="Bryan's Café Logo" width="121" height="43">
-            <span>Bryan's Café</span>
-        </div>
         <nav>
+            <div class="logo">
+                <img src="images/logo.jpg" alt="Bryan's Café Logo" width="121" height="43">
+            </div>
             <ul>
                 <li><a href="index.html">About</a></li>
-                <li><a href="Menu.html">Menu</a></li>
-                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Menu Section -->
     <section id="menu">
         <h2>Menu</h2>
-
+    
         <div class="text-box">
             <h3>Meals</h3>
             <table>
@@ -86,43 +36,144 @@
                         <th>Description</th>
                     </tr>
                 </thead>
-                <tbody id="meal-table">
-                    <!-- Meals dynamically loaded here -->
+                <tbody>
+                    <tr>
+                        <td>Beetroot and Feta Salad</td>
+                        <td>$15.00</td>
+                        <td>Suitable for vegetarians, made with fresh beetroot</td>
+                    </tr>
+                    <tr>
+                        <td>Sourdough Rye Sandwich</td>
+                        <td>$18.00</td>
+                        <td>Cheese and salad sandwich made with organic, sourdough rye bread</td>
+                    </tr>
+                    <tr>
+                        <td>Spinach Pie and Salad</td>
+                        <td>$20.00</td>
+                        <td>Tasty pie with salad</td>
+                    </tr>
+                    <tr>
+                        <td>Feta Pancakes with Salad</td>
+                        <td>$19.50</td>
+                        <td>Tasty pancake filled with feta and salad</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
-
         <div class="text-box">
-            <h3>Hot Beverages</h3>
+            <h3>Beverages</h3>
             <table>
                 <thead>
-                    <tr>
-                        <th>Size</th>
-                        <th>Price</th>
-                        <th>Description</th>
-                    </tr>
+                <tr>
+                    <th>Size</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                </tr>
                 </thead>
-                <tbody id="hot-beverage-table">
-                    <!-- Hot Beverages dynamically loaded here -->
+                <tbody>
+                <tr>
+                    <td>Small</td>
+                    <td>$3.50</td>
+                    <td rowspan="3">For coffee, please inform the staff of the coffee type.</td>
+                </tr>
+                <tr>
+                    <td>Regular</td>
+                    <td>$4.00</td>
+                </tr>
+                <tr>
+                    <td>Large</td>
+                    <td>$4.50</td>
+                </tr>
                 </tbody>
             </table>
-        </div>
-
-        <div class="text-box">
-            <h3>Other Beverages</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-                <tbody id="other-beverage-table">
-                    <!-- Other Beverages dynamically loaded here -->
-                </tbody>
-            </table>
+            <h4>Other Beverages</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Soda</td>
+                    <td>$3.00</td>
+                </tr>
+                <tr>
+                    <td>Fresh Juice</td>
+                    <td>$6.00</td>
+                </tr>
+                <tr>
+                    <td>Bottled Water</td>
+                    <td>$2.00</td>
+                </tr>
+            </tbody>
+        </table>
         </div>
     </section>
+    <!-- Main Section -->
+    <main id="menu">
+        <h2>Our Menu</h2>
+
+        <!-- Meals Section -->
+        <section class="meals">
+            <h3>Meals</h3>
+            <ul>
+                <li>
+                    <img src="images/beetroot and feta salad.jpg" alt="Beetroot and Feta Salad">
+                    <h1> <strong>Beetroot and Feta Salad</strong> </h1>
+                    <p>$15.00</p>
+                    <p>Suitable for vegetarians, made with fresh beetroot.</p>
+                </li>
+                <li>
+                    <img src="images/Sourdough Rye Sandwich.jpg" alt="Sourdough Rye Sandwich">
+                    <h1> <strong>Sourdough Rye Sandwich</strong> </h1>
+                    <p>$18.00</p>
+                    <p>Cheese and salad sandwich made with organic sourdough rye bread.</p>
+                </li>
+                <li>
+                    <img src="images/Spinach Pie and Salad.jpg" alt="Spinach Pie and Salad">
+                    <h1> <strong>Spinach Pie and Salad</strong> </h1>
+                    <p>$20.00</p>
+                    <p>Tasty pie with salad.</p>
+                </li>
+                <li>
+                    <img src="images/spinach-and-feta-pancakes.jpg" alt="Feta Pancakes with Salad">
+                    <h1> <strong>Feta Pancakes with Salad</strong> </h1>
+                    <p>$19.50</p>
+                    <p>Tasty pancake filled with feta and salad.</p>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Beverages Section -->
+        <section class="beverages">
+            <h3>Beverages</h3>
+            <ul>
+                <li>
+                    <img src="images/Coffee.jpg" alt="Coffee and Hot Cholate">
+                    <h1> <strong>Coffee and Hot Chocolates</strong> </h1>
+                    <p>Small: $3.50 | Regular: $4.00 | Large: $4.50</p>
+                    <p>For coffee, please inform the staff of the coffee type.</p>
+                </li>
+                <li>
+                    <img src="images/soda.jpg" alt="Soda">
+                    <h1> <strong>Soda</strong> </h1>
+                    <p>$3.00</p>
+                </li>
+                <li>
+                    <img src="images/Juice.jpg" alt="Fresh Juice">
+                    <h1> <strong>Fresh Juice</strong> </h1>
+                    <p>$6.00</p>
+                </li>
+                <li>
+                    <img src="images/water.jpg" alt="water">
+                    <h1> <strong>Bottled Water</strong> </h1>
+                    <p>$2.00</p>
+                </li>
+            </ul>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer>
